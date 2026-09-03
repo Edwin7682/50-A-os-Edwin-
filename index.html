@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+<title>50 Años Edwin Fernando Alfonso Hernández</title>
+ 
+<style>
+
+body{
+margin:0;
+padding:0;
+font-family:Georgia, serif;
+background:#f8f5ee;
+text-align:center;
+color:#2d3b2f;
+}
+ 
+.hero{
+padding:40px 20px;
+}
+ 
+img{
+width:100%;
+max-width:900px;
+border-radius:12px;
+box-shadow:0px 5px 15px rgba(0,0,0,.2);
+}
+ 
+h1{
+font-size:42px;
+margin-top:30px;
+color:#b08a3b;
+}
+ 
+.contador{
+background:#234126;
+color:white;
+padding:30px;
+margin-top:30px;
+font-size:28px;
+}
+ 
+.boton{
+display:inline-block;
+padding:15px 30px;
+margin:15px;
+border-radius:30px;
+text-decoration:none;
+font-weight:bold;
+background:#b08a3b;
+color:white;
+}
+ 
+.evento{
+padding:40px;
+}
+ 
+</style>
+ 
+</head>
+ 
+<body>
+ 
+<div class="hero">
+ 
+<h1>50 Años</h1>
+ 
+<h2>Edwin Fernando Alfonso Hernández</h2>
+ 
+<p>
+50 años vividos, infinitos momentos por celebrar
+</p>
+ 
+invitacion.png
+ 
+</div>
+ 
+<div class="contador">
+ 
+<div id="countdown"></div>
+ 
+</div>
+ 
+<div class="evento">
+ 
+<h2>Información del Evento</h2>
+ 
+<p><strong>Fecha:</strong> 11 de octubre de 2026</p>
+ 
+<p><strong>Hora:</strong> 12:00 del medio día</p>
+ 
+<p><strong>Lugar:</strong> Hacienda San Felipe</p>
+ 
+<p><strong>Vestuario:</strong> Semiformal</p>
+ 
+<a class="boton"
+href="https://maps.app.goo.gl/HE2tgvHuHPJm6so68"
+target="_blank">
+ 
+Ver Ubicación
+ 
+</a>
+ 
+<a class="boton"
+href="https://forms.gle/Qco4yvgkDKeDfZdv5"
+target="_blank">
+ 
+Confirmar Asistencia
+ 
+</a>
+ 
+</div>
+ 
+<script>
+ 
+const fechaEvento =
+new Date("October 11, 2026 12:00:00").getTime();
+ 
+setInterval(function(){
+ 
+const ahora = new Date().getTime();
+ 
+const distancia =
+fechaEvento - ahora;
+ 
+const dias =
+Math.floor(distancia/(1000*60*60*24));
+ 
+const horas =
+Math.floor((distancia%(1000*60*60*24))/(1000*60*60));
+ 
+const minutos =
+Math.floor((distancia%(1000*60*60))/(1000*60));
+ 
+const segundos =
+Math.floor((distancia%(1000*60))/1000);
+ 
+document.getElementById("countdown").innerHTML =
+dias+" días "+
+horas+" horas "+
+minutos+" min "+
+segundos+" seg";
+ 
+},1000);
+ 
+</script>
+ 
+</body>
+</html>
+``
