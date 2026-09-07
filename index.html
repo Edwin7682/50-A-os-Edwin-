@@ -1,10 +1,461 @@
 <!DOCTYPE html>
-<html>
+<html lang="es">
+
+<head>
+
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>50 Años | Edwin Fernando Alfonso Hernández</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizin*:border-box;
+}
+
+html{
+scroll-behav*or:smooth;
+}
+
+body{
+background:#f7f3ea;
+font-family:Georgia,serif;
+color:#2d3b2f;
+overflow-x:hidden;
+}
+
+/* PANTALLA INICIAL */
+
+#pantallaInicial{
+
+position:fix*d;
+top:0;
+left:0;
+width:*00%;
+height:100vh;
+
+background:#*f3c24;
+
+*isplay:flex;
+flex-direction:column*
+justify-content:center;
+align-ite*s:center;
+text-align:center;
+
+colo*:white;
+
+padding:30px;
+
+z-index:99*9;
+}
+
+#nombreInvitado{
+
+font-size:*4px;
+font-weight:bold;
+
+color:#dcb*5d;
+
+margin-top:15px;
+margin-botto*:15px;
+
+}
+
+#pasesInvitado{
+
+font-s*ze:20px;
+max-width:700px;
+margin-b*ttom:30px;
+}
+
+.btnPrincipal{
+
+back*round:#b88b30;
+color:white;
+
+borde*:none;
+
+padding:15px 35px;
+
+border*radius:40px;
+
+font-size:18px;
+
+font-weight:bold;
+
+cursor:pointer;
+}
+
+/* SECCIONES */
+
+.seccion{
+
+opacity:0;
+
+transfor*:translateY(50px);
+
+transition:all*1.2s ease;
+
+}
+
+.seccion.visible{
+
+*pacity:1;
+
+transform:*ranslateY(0);
+}
+
+img{
+
+width:100%;*display:block;
+}
+
+/* CUENTA REGRESIVA */
+
+.contador{
+
+background:#1f3c24*
+
+color:white;
+
+text-align:center;*
+padding:60px 20px;
+
+}
+
+.contador *2{
+
+margin-bottom:30px;
+
+font-size*36px;
+
+}
+
+#countdown{
+
+font-size*28px;
+
+line-height:1.8;
+
+font-weight:bold;
+}
+
+/* BLOQUE PERSONALIZADO */
+
+.personalizado{
+
+padding:60px 20px;
+
+text-align:center;
+
+background:white;
+}
+
+.personalizado h2{
+
+margin-bottom:20px;
+}
+
+.personalizado h1{
+
+color:#b88b30;
+
+margin-bottom:20px;
+}
+
+/* BOTONES */
+
+.botones{
+
+padding:40px 20px;
+
+text-align:center;
+
+background:white;
+}
+
+.boton{
+
+display:inline-block;
+
+margin:10px;
+
+padding:15px 30px;
+
+background:#b88b30;
+
+color:white;
+
+text-decoration:none;
+
+font-weight:bold;
+
+border-radius:40px;
+}
+
+footer{
+
+padding:50px;
+
+text-align:center;
+
+font-size:18px;
+}
+
+</style>
+
+</head>
+
 <body>
 
-<h1>PRUEBA NUEVA</h1>
+<!-- INICIO -->
+
+<div id="pantallaInicial">
+
+<h2>INVITADO ESPECIAL</h2>
+
+<div id="nombreInvitado">
+Invitado Especial
+</div>
+
+<div id="pasesInvitado">
+Hemos reservado lugares para compartir esta celebración.
+</div>
+
+<button class="btnPrincipal" onclick="abrirInvitacion()">
+
+ABRIR INVITACIÓN
+
+</button>
+
+</div>
+
+<!-- CONTENIDO -->
+
+<div id="contenido" style="display:none;">
+
+<section class="seccion">
 
 <img src="PORTADA.png">
+
+</section>
+
+<section class="personalizado seccion">
+
+<h2>INVITADO ESPECIAL</h2>
+
+<h1 id="nombreInterno"></h1>
+
+<p id="pasesInternos"></p>
+
+</section>
+
+<section class="seccion">
+
+<img src="BIENVENIDA.png">
+
+</section>
+
+<section class="contador seccion">
+
+<h2>CUENTA REGRESIVA</h2>
+
+<div id="countdown"></div>
+
+</section>
+
+<section class="seccion">
+
+UBICACION.png
+
+</section>
+
+<div class="botones seccion">
+
+<a
+class="boton"
+target="_blank"
+href="https://maps.app.goo.gl/HE2tgvHuHPJm6so68">
+
+📍 VER UBICACIÓN
+
+</a>
+
+https://www.google.com/calendar/render?action=TEMPLATE&text=Celebracion+50+Años+Edwin+Fernando+Alfonso+Hernandez
+
+📅 AGREGAR AL CALENDARIO
+
+</a>
+
+</div>
+
+<section class="seccion">
+
+ALMUERZO.png
+
+</section>
+
+<section class="seccion">
+
+CONFIRMACION.png
+
+</section>
+
+<div class="botones seccion">
+
+<a
+class="boton"
+target="_blank"
+href="https://forms.gle/Qco4yvgkDKeDfZdv5">
+
+✅ CONFIRMAR ASISTENCIA
+
+</a>
+
+</div>
+
+<section class="seccion">
+
+<img src="FINAL.png">
+
+</section>
+
+<footer class="seccion">
+
+<p>
+
+50 años vividos, infinitos momentos por celebrar
+
+</p>
+
+<p style="margin-top:10px;">
+
+Edwin Fernando Alfonso Hernández
+
+</p>
+
+</footer>
+
+</div>
+
+<script>
+
+/* INVITADOS */
+
+const params =
+new URLSearchParams(window.location.search);
+
+const nombre =
+params.get("nombre") ||
+"Invitado Especial";
+
+const pases =
+params.get("pases") ||
+"1";
+
+document.getElementById("nombreInvitado")
+.innerText = nombre;
+
+document.getElementById("nombreInterno")
+.innerText = nombre;
+
+document.getElementById("pasesInvitado")
+.innerText =
+"Hemos reservado " +
+pases +
+" lugar(es) para compartir esta celebración.";
+
+document.getElementById("pasesInternos")
+.innerText =
+"Pases reservados: " + pases;
+
+/* ABRIR */
+
+function abrirInvitacion(){
+
+document.getElementById("pantallaInicial")
+.style.display="none";
+
+document.getElementById("contenido")
+.style.display="block";
+
+window.scrollTo(0,0);
+
+}
+
+/* CONTADOR */
+
+const fechaEvento =
+new Date("2026-10-11T12:00:00").getTime();
+
+setInterval(function(){
+
+const ahora =
+new Date().getTime();
+
+const diferencia =
+fechaEvento - ahora;
+
+const dias =
+Math.floor(diferencia/(1000*60*60*24));
+
+const horas =
+Math.floor(
+(diferencia%(1000*60*60*24))
+/
+(1000*60*60));
+
+const minutos =
+Math.floor(
+(diferencia%(1000*60*60))
+/
+(1000*60));
+
+const segundos =
+Math.floor(
+(diferencia%(1000*60))
+/
+1000);
+
+document.getElementById("countdown")
+.innerHTML =
+
+dias + " días<br>" +
+horas + " horas<br>" +
+minutos + " minutos<br>" +
+segundos + " segundos";
+
+},1000);
+
+/* ANIMACIONES */
+
+const observador =
+new IntersectionObserver((entradas)=>{
+
+entradas.forEach((entrada)=>{
+
+if(entrada.isIntersecting){
+
+entrada.target.classList.add("visible");
+
+}
+
+});
+
+});
+
+document
+.querySelectorAll(".seccion")
+.forEach((s)=>{
+
+observador.observe(s);
+
+});
+
+</script>
 
 </body>
 </html>
