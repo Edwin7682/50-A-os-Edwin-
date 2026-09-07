@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>50 Años - Edwin Fernando Alfonso Hernández</title>
+<title>50 Años | Edwin Fernando Alfonso Hernández</title>
 
 <style>
 
@@ -15,57 +15,48 @@ box-sizing:border-box;
 }
 
 body{
-font-family: Georgia, serif;
 background:#f7f3ea;
+font-family:Georgia, serif;
 color:#2d3b2f;
-overflow-x:hidden;
 }
 
 .bienvenida{
 min-height:100vh;
 background:#1f3c24;
-color:white;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
 padding:30px;
-}
-
-.bienvenida h2{
-font-size:18px;
-letter-spacing:3px;
-margin-bottom:20px;
+color:white;
 }
 
 .nombre{
-font-size:34px;
+font-size:36px;
 font-weight:bold;
-color:#e0b861;
-margin-bottom:20px;
+color:#dcb45d;
+margin:20px 0;
 }
 
 .pases{
-font-size:20px;
+max-width:700px;
+font-size:22px;
 margin-bottom:30px;
-max-width:600px;
 }
 
 .btn{
 background:#b88b30;
 color:white;
-text-decoration:none;
-padding:15px 35px;
-border-radius:40px;
-font-weight:bold;
-display:inline-block;
-cursor:pointer;
+padding:15px 30px;
 border:none;
+border-radius:40px;
+cursor:pointer;
 font-size:18px;
+font-weight:bold;
 }
 
-.imagen{
+img{
 width:100%;
 display:block;
 }
@@ -82,45 +73,37 @@ margin-bottom:25px;
 }
 
 #countdown{
-font-size:28px;
-line-height:1.8;
+font-size:32px;
 font-weight:bold;
+line-height:1.7;
 }
 
 .botones{
-padding:30px;
 text-align:center;
-background:white;
+padding:30px;
+background:#ffffff;
 }
 
 .boton{
 display:inline-block;
 margin:10px;
 padding:15px 25px;
-border-radius:40px;
 background:#b88b30;
 color:white;
 text-decoration:none;
+border-radius:40px;
 font-weight:bold;
 }
 
-audio{
-width:90%;
-max-width:500px;
-margin:30px auto;
-display:block;
-}
-
 footer{
-padding:40px;
 text-align:center;
-background:#f7f3ea;
+padding:40px;
 }
 
 @media(max-width:768px){
 
 .nombre{
-font-size:26px;
+font-size:28px;
 }
 
 .pases{
@@ -128,25 +111,26 @@ font-size:18px;
 }
 
 #countdown{
-font-size:22px;
+font-size:24px;
 }
 
 }
 
 </style>
+
 </head>
 
 <body>
 
-<div class="bienvenida" id="pantallaInicio">
+<div id="inicio" class="bienvenida">
 
 <h2>INVITADO ESPECIAL</h2>
 
-<div class="nombre" id="nombreInvitado">
-Nuestro Invitado
+<div id="nombreInvitado" class="nombre">
+Invitado Especial
 </div>
 
-<div class="pases" id="mensajePases">
+<div id="mensajePases" class="pases">
 Hemos reservado lugares para compartir esta celebración.
 </div>
 
@@ -160,15 +144,15 @@ ABRIR INVITACIÓN
 
 PORTADA.png
 
-<section style="padding:40px; text-align:center; background:#f7f3ea;">
+<section style="padding:40px;text-align:center;">
 
 <h2>INVITADO ESPECIAL</h2>
 
-<h1 style="color:#b88b30; margin-top:15px;" id="nombreInterno">
-Nuestro Invitado
+<h1 id="nombreInterno" style="color:#b88b30;margin-top:15px;">
+Invitado
 </h1>
 
-<p style="margin-top:20px; font-size:22px;" id="pasesInternos">
+<p id="pasesInternos" style="margin-top:20px;font-size:22px;">
 Pases reservados
 </p>
 
@@ -184,12 +168,9 @@ BIENVENIDA.png
 
 </div>
 
-UBICACION.png
+<img src="UBICACION class="botones">
 
-<div class="botones">
-
-<a
-class="boton"
+<a class="boton"
 href="https://maps.app.goo.gl/HE2tgvHuHPJm6so68"
 target="_blank">
 
@@ -197,21 +178,19 @@ target="_blank">
 
 </a>
 
-<a
-class="boton"
-href="https://www.google.com/calendar/render?action=TEMPLATE&text=Celebracion+50+Anos+Edwin+Fernando+Alfonso+Hernandez"
-target=
+<a class="boton"
+href="https://www.google.com/calendar/render?action=TEMPLATE&text=Celebracion+50+Anos+Edwin+Fernando+Alfonso+Hernandez&dates=20261011T170000Z/20261011T220000Z&location=Hacienda+San+Felipe"
+target="_blank">
+
+📅 AGREGAR AL CALENDARIO
+
+</a>
 
 </div>
 
-ALMUERZO.png
+<img src="">
 
-<img srcCION.png
-
-<div class="botones">
-
-<a
-class="boton"
+<a class="boton"
 href="https://forms.gle/Qco4yvgkDKeDfZdv5"
 target="_blank">
 
@@ -223,17 +202,11 @@ target="_blank">
 
 FINAL.png
 
-<!-- Cuando subas el MP3 solo descomenta esta línea -->
-
-<!--
-<audio controls autoplay loop>
-<source src="vivir-mi-vida.mp3" type="audio/mpeg">
-</audio>
--->
-
 <footer>
 
-<h3>50 años vividos, infinitos momentos por celebrar</h3>
+<h3>
+50 años vividos, infinitos momentos por celebrar
+</h3>
 
 <p style="margin-top:10px;">
 Edwin Fernando Alfonso Hernández
@@ -245,43 +218,39 @@ Edwin Fernando Alfonso Hernández
 
 <script>
 
-const params =
-new URLSearchParams(window.location.search);
+const params = new URLSearchParams(window.location.search);
 
 const nombre =
-params.get('nombre') || 'Invitado Especial';
+params.get("nombre") || "Invitado Especial";
 
 const pases =
-params.get('pases') || '1';
+params.get("pases") || "1";
 
-document.getElementById('nombreInvitado').innerHTML =
+document.getElementById("nombreInvitado").innerText =
 nombre;
 
-document.getElementById('nombreInterno').innerHTML =
+document.getElementById("nombreInterno").innerText =
 nombre;
 
-document.getElementById('mensajePases').innerHTML =
-'Hemos reservado ' +
-pases +
-' lugar(es) para compartir esta celebración.';
+document.getElementById("mensajePases").innerText =
+"Hemos reservado " + pases +
+" lugar(es) para compartir esta celebración.";
 
-document.getElementById('pasesInternos').innerHTML =
-'Pases reservados: ' + pases;
+document.getElementById("pasesInternos").innerText =
+"Pases reservados: " + pases;
 
 function abrirInvitacion(){
 
-document.getElementById('pantallaInicio')
-.style.display='none';
+document.getElementById("inicio").style.display="none";
 
-document.getElementById('contenido')
-.style.display='block';
+document.getElementById("contenido").style.display="block";
 
 window.scrollTo(0,0);
 
 }
 
 const fechaEvento =
-new Date('2026-10-11T12:00:00').getTime();
+new Date("2026-10-11T12:00:00").getTime();
 
 setInterval(function(){
 
@@ -295,32 +264,19 @@ const dias =
 Math.floor(diferencia/(1000*60*60*24));
 
 const horas =
-Math.floor(
-(diferencia%(1000*60*60*24))
-/
-(1000*60*60)
-);
+Math.floor((diferencia%(1000*60*60*24))/(1000*60*60));
 
 const minutos =
-Math.floor(
-(diferencia%(1000*60*60))
-/
-(1000*60)
-);
+Math.floor((diferencia%(1000*60*60))/(1000*60));
 
 const segundos =
-Math.floor(
-(diferencia%(1000*60))
-/
-1000
-);
+Math.floor((diferencia%(1000*60))/1000);
 
-document.getElementById('countdown').innerHTML =
-
-dias + ' días<br>' +
-horas + ' horas<br>' +
-minutos + ' minutos<br>' +
-segundos + ' segundos';
+document.getElementById("countdown").innerHTML =
+dias + " días<br>" +
+horas + " horas<br>" +
+minutos + " minutos<br>" +
+segundos + " segundos";
 
 },1000);
 
