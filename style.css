@@ -10,86 +10,260 @@ scroll-behavior:smooth;
 
 body{
 background:#f7f3ea;
-font-family:Georgia,serif;
+font-family:Georgia, serif;
 color:#2d3b2f;
 overflow-x:hidden;
 }
 
-img{
-width:100%;
-display:block;
-}
-
-.oculto{
-opacity:0;
-transform:translateY(40px);
-transition:all 1s ease;
-}
-
-.visible{
-opacity:1;
-transform:translateY(0);
-}
+/* PANTALLA INICIAL */
 
 .inicio{
+
 height:100vh;
-background:#1f3c24;
+
+background:
+linear-gradient(
+180deg,
+#1f3c24 0%,
+#305538 100%
+);
+
 color:white;
+
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
+
 padding:30px;
+
+}
+
+.inicio h2{
+
+letter-spacing:3px;
+
+margin-bottom:20px;
+
 }
 
 .inicio h1{
+
+font-size:40px;
+
 color:#dcb45d;
-margin:20px 0;
+
+margin-bottom:20px;
+
 }
+
+.inicio p{
+
+max-width:600px;
+
+font-size:22px;
+
+margin-bottom:30px;
+
+}
+
+/* BOTONES */
 
 .boton{
+
 background:#b88b30;
+
 color:white;
-padding:15px 30px;
-border-radius:40px;
+
 text-decoration:none;
-font-weight:bold;
-display:inline-block;
-margin:10px;
+
+padding:15px 35px;
+
 border:none;
-cursor:pointer;
-}
 
-.contador{
-background:#1f3c24;
-color:white;
-padding:50px 20px;
-text-align:center;
-}
+border-radius:40px;
 
-.contador h2{
-margin-bottom:20px;
-}
-
-#countdown{
-font-size:30px;
-line-height:1.7;
 font-weight:bold;
+
+display:inline-block;
+
+cursor:pointer;
+
+transition:all .3s ease;
+
 }
 
-.botones{
-text-align:center;
-padding:40px 20px;
+.boton:hover{
+
+transform:translateY(-3px);
+
+box-shadow:0 10px 25px rgba(0,0,0,.2);
+
 }
+
+/* IMAGENES */
+
+img{
+
+width:100%;
+
+display:block;
+
+}
+
+/* SEPARADORES */
+
+.separador{
+
+height:120px;
+
+background:
+
+linear-gradient(
+to bottom,
+#f7f3ea,
+#ffffff
+);
+
+}
+
+/* PERSONALIZACION */
 
 .personalizado{
-padding:50px 20px;
-text-align:center;
+
+padding:70px 20px;
+
 background:white;
+
+text-align:center;
+
+}
+
+.personalizado h2{
+
+margin-bottom:20px;
+
 }
 
 .personalizado h1{
+
 color:#b88b30;
-margin:15px 0;
+
+font-size:40px;
+
+margin-bottom:20px;
+
 }
+
+.personalizado p{
+
+font-size:22px;
+
+}
+
+/* CUENTA REGRESIVA */
+
+.contador{
+
+background:#1f3c24;
+
+color:white;
+
+padding:80px 20px;
+
+text-align:center;
+
+}
+
+.contador h2{
+
+font-size:40px;
+
+margin-bottom:30px;
+
+}
+
+#countdown{
+
+font-size:36px;
+
+line-height:1.8;
+
+font-weight:bold;
+
+}
+
+/* BOTONES INTERMEDIOS */
+
+.botones{
+
+padding:50px 20px;
+
+text-align:center;
+
+background:white;
+
+}
+
+/* TRANSICIONES */
+
+.oculto{
+
+opacity:0;
+
+transform:
+translateY(120px)
+scale(.96);
+
+transition:
+all 1.8s ease;
+
+}
+
+.visible{
+
+opacity:1;
+
+transform:
+translateY(0)
+scale(1);
+
+}
+
+/* FOOTER */
+
+footer{
+
+padding:60px;
+
+text-align:center;
+
+font-size:20px;
+
+background:#f7f3ea;
+
+}
+
+@media(max-width:768px){
+
+.inicio h1{
+
+font-size:28px;
+
+}
+
+.personalizado h1{
+
+font-size:28px;
+
+}
+
+#countdown{
+
+font-size:26px;
+
+}
+
+}
+``
