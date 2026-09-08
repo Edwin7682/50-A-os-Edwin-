@@ -1,0 +1,95 @@
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+html{
+scroll-behavior:smooth;
+}
+
+body{
+background:#f7f3ea;
+font-family:Georgia,serif;
+color:#2d3b2f;
+overflow-x:hidden;
+}
+
+img{
+width:100%;
+display:block;
+}
+
+.oculto{
+opacity:0;
+transform:translateY(40px);
+transition:all 1s ease;
+}
+
+.visible{
+opacity:1;
+transform:translateY(0);
+}
+
+.inicio{
+height:100vh;
+background:#1f3c24;
+color:white;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:30px;
+}
+
+.inicio h1{
+color:#dcb45d;
+margin:20px 0;
+}
+
+.boton{
+background:#b88b30;
+color:white;
+padding:15px 30px;
+border-radius:40px;
+text-decoration:none;
+font-weight:bold;
+display:inline-block;
+margin:10px;
+border:none;
+cursor:pointer;
+}
+
+.contador{
+background:#1f3c24;
+color:white;
+padding:50px 20px;
+text-align:center;
+}
+
+.contador h2{
+margin-bottom:20px;
+}
+
+#countdown{
+font-size:30px;
+line-height:1.7;
+font-weight:bold;
+}
+
+.botones{
+text-align:center;
+padding:40px 20px;
+}
+
+.personalizado{
+padding:50px 20px;
+text-align:center;
+background:white;
+}
+
+.personalizado h1{
+color:#b88b30;
+margin:15px 0;
+}
