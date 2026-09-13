@@ -1,130 +1,31 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
-
 <head>
-
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>50 Años Edwin Fernando Alfonso Hernández</title>
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>50 años | Edwin Fernando Alfonso Hernández</title>
 <link rel="stylesheet" href="style.css">
-
 </head>
-
 <body>
-
-<div id="pantallaInicial" class="inicio">
-
-<h2>INVITADO ESPECIAL</h2>
-
-<h1 id="nombreInvitado">
-Invitado Especial
-</h1>
-
-<p id="pasesInvitado">
-Hemos reservado lugares para compartir esta celebración.
-</p>
-
-<button class="boton" onclick="abrirInvitacion()">
-ABRIR INVITACIÓN
-</button>
-
-</div>
-
-<div id="contenido" style="display:none;">
-
-<section class="oculto">
-<img src="PORTADA.png">
+<section id="inicio" class="inicio">
+  <div class="tarjeta">
+    <p class="etiqueta">INVITADO ESPECIAL</p>
+    <h1 id="nombreInvitado">Invitado especial</h1>
+    <p id="pasesInvitado"></p>
+    <button id="abrir" class="boton">ABRIR INVITACIÓN</button>
+  </div>
 </section>
-
-<section class="personalizado oculto">
-
-<h2>INVITADO ESPECIAL</h2>
-
-<h1 id="nombreInterno">
-Invitado
-</h1>
-
-<p id="pasesInternos">
-Pases reservados
-</p>
-
-</section>
-
-<section class="oculto">
-<img src="BIENVENIDA.png">
-</section>
-
-<section class="contador oculto">
-
-<h2>CUENTA REGRESIVA</h2>
-
-<div id="countdown"></div>
-
-</section>
-
-<section class="oculto">
-UBICACION.png
-</section>
-
-<div class="botones oculto">
-
-<a
-class="boton"
-target="_blank"
-href="https://maps.app.goo.gl/HE2tgvHuHPJm6so68">
-📍 VER UBICACIÓN
-</a>
-
-<a
-class="boton"
-target="_blank"
-href="https://forms.gle/Qco4yvgkDKeDfZdv5">
-✅ CONFIRMAR ASISTENCIA
-</a>
-
-</div>
-
-<section class="oculto">
-<img src="ng
-</section>
-
-<section class="oculto">
-CONFIRMACION.png
-</section>
-
-<div class="botones oculto">
-
-<a
-class="boton"
-target="_blank"
-href="https://forms.gle/Qco4yvgkDKeDfZdv5">
-✅ CONFIRMAR ASISTENCIA
-</a>
-
-</div>
-
-<section class="oculto">
-<img src="FINAL.png">
-</section>
-
-<footer class="oculto">
-
-<p>
-50 años vividos, infinitos momentos por celebrar
-</p>
-
-<p style="margin-top:10px;">
-Edwin Fernando Alfonso Hernández
-</p>
-
-</footer>
-
-</div>
-
+<main id="invitacion" hidden>
+  <div class="slide activa"><div class="contenido"><img src="PORTADA.png" alt="Portada"></div><nav><span></span><button class="boton siguiente">SIGUIENTE ›</button></nav></div>
+  <div class="slide"><div class="contenido"><img src="BIENVENIDA.png" alt="Bienvenida"></div><nav><button class="boton secundario anterior">‹ ANTERIOR</button><button class="boton siguiente">SIGUIENTE ›</button></nav></div>
+  <div class="slide contador"><div class="cuenta"><p class="etiqueta">FALTAN</p><h2>Cuenta regresiva</h2><div class="tiempo"><div><b id="dias">0</b><span>Días</span></div><div><b id="horas">0</b><span>Horas</span></div><div><b id="minutos">0</b><span>Minutos</span></div><div><b id="segundos">0</b><span>Segundos</span></div></div><p>11 de octubre de 2026 · 12:00 m.</p></div><nav><button class="boton secundario anterior">‹ ANTERIOR</button><button class="boton siguiente">SIGUIENTE ›</button></nav></div>
+  <div class="slide"><div class="contenido"><img src="UBICACION.png" alt="Ubicación"><div class="acciones"><a class="boton" href="https://maps.app.goo.gl/HE2tgvHuHPJm6so68" target="_blank" rel="noopener">VER UBICACIÓN</a><a class="boton secundario" href="https://www.google.com/calendar/render?action=TEMPLATE&text=Celebracion%2050%20anos%20Edwin&dates=20261011T170000Z%2F20261011T220000Z&location=Hacienda%20San%20Felipe" target="_blank" rel="noopener">AGREGAR AL CALENDARIO</a></div></div><nav><button class="boton secundario anterior">‹ ANTERIOR</button><button class="boton siguiente">SIGUIENTE ›</button></nav></div>
+  <div class="slide"><div class="contenido"><img src="ALMUERZO.png" alt="Almuerzo"></div><nav><button class="boton secundario anterior">‹ ANTERIOR</button><button class="boton siguiente">SIGUIENTE ›</button></nav></div>
+  <div class="slide"><div class="contenido"><img src="CONFIRMACION.png" alt="Confirmación"><div class="acciones"><a class="boton" href="https://forms.gle/Qco4yvgkDKeDfZdv5" target="_blank" rel="noopener">CONFIRMAR ASISTENCIA</a></div></div><nav><button class="boton secundario anterior">‹ ANTERIOR</button><button class="boton siguiente">SIGUIENTE ›</button></nav></div>
+  <div class="slide"><div class="contenido"><img src="FINAL.png" alt="Mensaje final"></div><nav><button class="boton secundario anterior">‹ ANTERIOR</button><span></span></nav></div>
+  <div class="superior"><button id="musicaBtn" aria-label="Música">♫</button><span id="progreso">1 / 7</span></div>
+  <audio id="musica" loop><source src="vivir-mi-vida.mp3" type="audio/mpeg"></audio>
+</main>
 <script src="script.js"></script>
-
 </body>
-
 </html>
