@@ -1,1 +1,317 @@
-*{box-sizing:border-box;margin:0;padding:0}:root{--v:#1f3c24;--c:#f7f3ea;--d:#b88b30;--o:#fff}body{font-family:Georgia,serif;background:var(--v);overflow:hidden}[hidden]{display:none!important}.inicio{position:fixed;inset:0;display:grid;place-items:center;padding:24px;background:linear-gradient(145deg,var(--v),#355d3f);color:#fff}.tarjeta{width:min(620px,100%);padding:50px 28px;text-align:center;border:1px solid #dcb45d;border-radius:26px;background:#17341fb8}.etiqueta{letter-spacing:.22em;font-weight:bold;font-size:.82rem}.tarjeta h1{color:#dcb45d;font-size:clamp(2rem,7vw,3.5rem);margin:18px 0}.tarjeta>p:last-of-type{font-size:1.15rem;line-height:1.55;margin-bottom:26px}#invitacion,.slide{position:fixed;inset:0;height:100svh}.slide{display:grid;grid-template-rows:minmax(0,1fr) auto;visibility:hidden;opacity:0;transform:translateX(100%);transition:transform .65s cubic-bezier(.22,1,.36,1),opacity .35s;background:var(--c);pointer-events:none}.slide.activa{visibility:visible;opacity:1;transform:translateX(0);pointer-events:auto;z-index:2}.slide.salida{visibility:visible;transform:translateX(-100%);opacity:0}.contenido{min-height:0;overflow:auto;background:var(--c)}img{display:block;width:100%;height:100%;object-fit:contain;object-position:center top}.acciones{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;padding:14px}.boton{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:11px 19px;border:1px solid var(--d);border-radius:999px;background:var(--d);color:#fff;text-decoration:none;font-weight:bold;cursor:pointer}.secundario{background:transparent;color:var(--v);border-color:#1f3c2470}nav{display:flex;justify-content:space-between;gap:10px;padding:12px 14px max(14px,env(safe-area-inset-bottom));background:#f7f3eafa;border-top:1px solid #b88b3040}.contador{color:#fff;background:linear-gradient(145deg,var(--v),#355d3f)}.cuenta{display:grid;align-content:center;justify-items:center;padding:70px 18px 24px;text-align:center}.cuenta h2{color:#dcb45d;font-size:clamp(2rem,7vw,3.5rem);margin:18px 0 30px}.tiempo{display:grid;grid-template-columns:repeat(4,minmax(90px,1fr));gap:12px;width:min(720px,100%);margin-bottom:25px}.tiempo div{padding:20px 8px;border:1px solid #dcb45d80;border-radius:16px}.tiempo b,.tiempo span{display:block}.tiempo b{font-size:clamp(2rem,6vw,3rem);color:#dcb45d}.tiempo span{margin-top:5px;font-size:.75rem;text-transform:uppercase}.contador .secundario{color:#fff;border-color:#ffffff80}.superior{position:fixed;z-index:10;top:12px;left:12px;right:12px;display:flex;justify-content:space-between;pointer-events:none}.superior>*{pointer-events:auto;color:#fff;background:#1f3c24d9;border:1px solid #ffffff80;border-radius:999px;min-height:42px;padding:0 14px;display:grid;place-items:center}#musicaBtn{min-width:42px;cursor:pointer;font-size:1.2rem}@media(max-width:650px){.tiempo{grid-template-columns:repeat(2,1fr)}.boton{font-size:.72rem;padding:10px 13px}img{height:auto;min-height:100%;object-fit:contain}}
+"use strict";
+
+
+/* DATOS PERSONALIZADOS DE LA URL */
+
+const parametros =
+  new URLSearchParams(
+    window.location.search
+  );
+
+const nombre =
+  (
+    parametros.get("nombre") ||
+    "Invitado especial"
+  ).trim();
+
+const pases =
+  Math.max(
+    1,
+    Number.parseInt(
+      parametros.get("pases"),
+      10
+    ) || 1
+  );
+
+
+/* ELEMENTOS PRINCIPALES */
+
+const pantallaInicial =
+  docum*nt.getElementById(
+    "pantallaIn*cial"
+  );
+
+const contenido =
+  do*ument.getElementById(
+    "conteni*o"
+  );
+
+const botonAbrir =
+  document.getElementById(
+    "botonAbrir"
+  );
+
+const nombreInvitado =
+  document.getElementById(
+    "nombreInvitado"
+  );
+
+const nombreInterno =
+  document.getElementById(
+    "nombreInterno"
+  );
+
+const pasesInvitado =
+  document.getElementById(
+    "pasesInvitado"
+  );
+
+const pasesInternos =
+  document.getElementById(
+    "pasesInternos"
+  );
+
+const musica =
+  document.getElementById(
+    "musica"
+  );
+
+const botonMusica =
+  document.getElementById(
+    "botonMusica"
+  );
+
+
+/* PERSONALIZACIÓN */
+
+nombreInvitado.textContent =
+  nombre;
+
+nombreInterno.textContent =
+  nombre;
+
+if (pases === 1) {
+
+  pasesInvitado.textContent =
+    "Hemos reservado 1 lugar para compartir esta celebración.";
+
+  pasesInternos.textContent =
+    "Pase reservado: 1";
+
+} else {
+
+  pasesInvitado.textContent =
+    "Hemos reservado " +
+    pases +
+    " lugares para compartir esta celebración.";
+
+  pasesInternos.textContent =
+    "Pases reservados: " +
+    pases;
+
+}
+
+
+/* ABRIR INVITACIÓN */
+
+botonAbrir.addEventListener(
+  "click",
+  function () {
+
+    pantallaInicial.style.display =
+      "none";
+
+    contenido.hidden =
+      false;
+
+    botonMusica.hidden =
+      false;
+
+    window.scrollTo(
+      {
+        top: 0,
+        behavior: "instant"
+      }
+    );
+
+    musica.play()
+      .then(function () {
+
+        botonMusica.classList.add(
+          "reproduciendo"
+        );
+
+      })
+      .catch(function () {
+
+        botonMusica.classList.remove(
+          "reproduciendo"
+        );
+
+      });
+
+  }
+);
+
+
+/* CONTROL DE MÚSICA */
+
+botonMusica.addEventListener(
+  "click",
+  function () {
+
+    if (musica.paused) {
+
+      musica.play()
+        .then(function () {
+
+          botonMusica.classList.add(
+            "reproduciendo"
+          );
+
+        })
+        .catch(function () {
+
+          botonMusica.classList.remove(
+            "reproduciendo"
+          );
+
+        });
+
+    } else {
+
+      musica.pause();
+
+      botonMusica.classList.remove(
+        "reproduciendo"
+      );
+
+    }
+
+  }
+);
+
+
+/* CUENTA REGRESIVA */
+
+const fechaEvento =
+  new Date(*    "2026-10-11T12:00:00-05:00"
+  *.getTime();
+
+const elementoDias =
+* document.getElementById("dias");
+*const elementoHoras =
+  document.g*tElementById("horas");
+
+const elem*ntoMinutos =
+  document.getElement*yId("minutos");
+
+const elementoSeg*ndos =
+  document.getElementById("*egundos");
+
+function actualizarCon*ador() {
+
+  const diferencia =
+   *Math.max(
+      0,
+      fechaEven*o - Date.now()
+    );
+
+  const dia* =
+    Math.floor(
+      diferenci* / 86400000
+    );
+
+  const horas *
+    Math.floor(
+      (
+        d*ferencia %
+        86400000
+      * /
+      3600000
+    );
+
+  const m*nutos =
+    Math.floor(
+      (
+  *     diferencia %
+        3600000
+*     ) /
+      60000
+    );
+
+  const segundos =
+    Math.floor(
+      (
+        diferencia %
+        60000
+      ) /
+      1000
+    );
+
+  elementoDias.textContent =
+    String(dias);
+
+  elementoHoras.textContent =
+    String(horas).padStart(
+      2,
+      "0"
+    );
+
+  elementoMinutos.textContent =
+    String(minutos).padStart(
+      2,
+      "0"
+    );
+
+  elementoSegundos.textContent =
+    String(segundos).padStart(
+      2,
+      "0"
+    );
+
+}
+
+actualizarContador();
+
+window.setInterval(
+  actualizarContador,
+  1000
+);
+
+
+/* ANIMACIONES AL HACER SCROLL */
+
+const elementosRevelar =
+  docu*ent.querySelectorAll(
+    ".revela*"
+  );
+
+const observador =
+  new I*tersectionObserver(
+
+    function *entradas) {
+
+      entradas.forEac*(
+        function (entrada) {
+
+  *       if (
+            entrada.is*ntersecting
+          ) {
+
+       *    entrada.target.classList.add(
+*             "visible"
+           *);
+
+          }
+
+        }
+      )*
+
+    },
+
+    {
+      threshold: 0*15
+    }
+
+  );
+
+elementosRevelar.f*rEach(
+  function (elemento) {
+
+  * observador.observe(
+      element*
+    );
+
+  }
+);
