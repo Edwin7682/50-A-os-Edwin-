@@ -1,317 +1,270 @@
 "use strict";
 
+/* PERSONALIZACION DESDE LA URL */
 
-/* DATOS PERSONALIZADOS DE LA URL */
+const parametros = new URLSearchParams(window.location.search);
 
-const parametros =
-  new URLSearchParams(
-    window.location.search
-  );
+const nombre = parametros.get("nombre") || "Invitado Especial";
+const pases = parametros.get("pases") || "1";
 
-const nombre =
-  (
-    parametros.get("nombre") ||
-    "Invitado especial"
-  ).trim();
+/* CARGAR DATOS DEL INVITADO */
 
-const pases =
-  Math.max(
-    1,
-    Number.parseInt(
-      parametros.get("pases"),
-      10
-    ) || 1
-  );
+const nombreInvitado = document.getElementById("nombreInvitado");
+const nombreInterno = document.getElementById("nombreInterno");
+const pasesInvitado = document.getElementById("pasesInvitado");
+const pasesInternos = document.getElementById("pasesInternos");
 
-
-/* ELEMENTOS PRINCIPALES */
-
-const pantallaInicial =
-  docum*nt.getElementById(
-    "pantallaIn*cial"
-  );
-
-const contenido =
-  do*ument.getElementById(
-    "conteni*o"
-  );
-
-const botonAbrir =
-  document.getElementById(
-    "botonAbrir"
-  );
-
-const nombreInvitado =
-  document.getElementById(
-    "nombreInvitado"
-  );
-
-const nombreInterno =
-  document.getElementById(
-    "nombreInterno"
-  );
-
-const pasesInvitado =
-  document.getElementById(
-    "pasesInvitado"
-  );
-
-const pasesInternos =
-  document.getElementById(
-    "pasesInternos"
-  );
-
-const musica =
-  document.getElementById(
-    "musica"
-  );
-
-const botonMusica =
-  document.getElementById(
-    "botonMusica"
-  );
-
-
-/* PERSONALIZACIÓN */
-
-nombreInvitado.textContent =
-  nombre;
-
-nombreInterno.textContent =
-  nombre;
-
-if (pases === 1) {
-
-  pasesInvitado.textContent =
-    "Hemos reservado 1 lugar para compartir esta celebración.";
-
-  pasesInternos.textContent =
-    "Pase reservado: 1";
-
-} else {
-
-  pasesInvitado.textContent =
-    "Hemos reservado " +
-    pases +
-    " lugares para compartir esta celebración.";
-
-  pasesInternos.textContent =
-    "Pases reservados: " +
-    pases;
-
+if (nombreInvitado) {
+  nombreInvitado.textContent = nombre;
 }
 
+if (nombreInterno) {
+  nombreInterno.textContent = nombre;
+}
 
-/* ABRIR INVITACIÓN */
+if (pasesInvitado) {
+  pasesInvitado.textContent =
+    pases === "1"
+      ? "Hemos reservado 1 lugar para compartir esta celebración."
+      : "Hemos reservado " +
+        pases +
+        " lugares para compartir esta celebración.";
+}
 
-botonAbrir.addEventListener(
-  "click",
-  function () {
+if (pasesInternos) {
+  pasesInternos.textContent =
+    pases === "1"
+      ? "Pase reservado: 1"
+      : "Pases reservados: " + pases;
+}
 
-    pantallaInicial.style.display =
-      "none";
+/* ABRIR LA INVITACION */
 
-    contenido.hidden =
-      false;
+function abrirInvitacion() {
+  const pantallaInicial =
+    document.getElementById("pantallaInicial");
 
-    botonMusica.hidden =
-      false;
+  const contenido =
+    document.getElementById("contenido");
 
-    window.scrollTo(
-      {
-        top: 0,
-        behavior: "instant"
-      }
-    );
-
-    musica.play()
-      .then(function () {
-
-        botonMusica.classList.add(
-          "reproduciendo"
-        );
-
-      })
-      .catch(function () {
-
-        botonMusica.classList.remove(
-          "reproduciendo"
-        );
-
-      });
-
+  if (pantallaInicial) {
+    pantallaInicial.style.display = "none";
   }
-);
 
-
-/* CONTROL DE MÚSICA */
-
-botonMusica.addEventListener(
-  "click",
-  function () {
-
-    if (musica.paused) {
-
-      musica.play()
-        .then(function () {
-
-          botonMusica.classList.add(
-            "reproduciendo"
-          );
-
-        })
-        .catch(function () {
-
-          botonMusica.classList.remove(
-            "reproduciendo"
-          );
-
-        });
-
-    } else {
-
-      musica.pause();
-
-      botonMusica.classList.remove(
-        "reproduciendo"
-      );
-
-    }
-
+  if (contenido) {
+    contenido.style.display = "block";
+    contenido.hidden = false;
   }
-);
 
+  window.scrollTo({
+    top: 0,
+    behavior: "auto"
+  });
+
+  iniciarAnimaciones();
+  intentarReproducirMusica();
+}
 
 /* CUENTA REGRESIVA */
 
 const fechaEvento =
-  new Date(*    "2026-10-11T12:00:00-05:00"
-  *.getTime();
+  new Date("2026-10-11T12:00:00-05:00").getTime();
 
-const elementoDias =
-* document.getElementById("dias");
-*const elementoHoras =
-  document.g*tElementById("horas");
-
-const elem*ntoMinutos =
-  document.getElement*yId("minutos");
-
-const elementoSeg*ndos =
-  document.getElementById("*egundos");
-
-function actualizarCon*ador() {
-
+function actualizarContador() {
   const diferencia =
-   *Math.max(
-      0,
-      fechaEven*o - Date.now()
+    Math.max(0, fechaEvento - Date.now());
+
+  const dias =
+    Math.floor(diferencia / 86400000);
+
+  const horas =
+    Math.floor(
+      (diferencia % 86400000) / 3600000
     );
 
-  const dia* =
+  const minutos =
     Math.floor(
-      diferenci* / 86400000
-    );
-
-  const horas *
-    Math.floor(
-      (
-        d*ferencia %
-        86400000
-      * /
-      3600000
-    );
-
-  const m*nutos =
-    Math.floor(
-      (
-  *     diferencia %
-        3600000
-*     ) /
-      60000
+      (diferencia % 3600000) / 60000
     );
 
   const segundos =
     Math.floor(
-      (
-        diferencia %
-        60000
-      ) /
-      1000
+      (diferencia % 60000) / 1000
     );
 
-  elementoDias.textContent =
-    String(dias);
+  const countdown =
+    document.getElementById("countdown");
 
-  elementoHoras.textContent =
-    String(horas).padStart(
-      2,
-      "0"
-    );
+  if (countdown) {
+    countdown.innerHTML =
+      dias +
+      " días<br>" +
+      horas +
+      " horas<br>" +
+      minutos +
+      " minutos<br>" +
+      segundos +
+      " segundos";
+  }
 
-  elementoMinutos.textContent =
-    String(minutos).padStart(
-      2,
-      "0"
-    );
+  const elementoDias =
+    document.getElementById("dias");
 
-  elementoSegundos.textContent =
-    String(segundos).padStart(
-      2,
-      "0"
-    );
+  const elementoHoras =
+    document.getElementById("horas");
 
+  const elementoMinutos =
+    document.getElementById("minutos");
+
+  const elementoSegundos =
+    document.getElementById("segundos");
+
+  if (elementoDias) {
+    elementoDias.textContent = String(dias);
+  }
+
+  if (elementoHoras) {
+    elementoHoras.textContent =
+      String(horas).padStart(2, "0");
+  }
+
+  if (elementoMinutos) {
+    elementoMinutos.textContent =
+      String(minutos).padStart(2, "0");
+  }
+
+  if (elementoSegundos) {
+    elementoSegundos.textContent =
+      String(segundos).padStart(2, "0");
+  }
 }
 
 actualizarContador();
+window.setInterval(actualizarContador, 1000);
 
-window.setInterval(
-  actualizarContador,
-  1000
-);
+/* ANIMACIONES AL DESPLAZARSE */
 
+let animacionesIniciadas = false;
 
-/* ANIMACIONES AL HACER SCROLL */
+function iniciarAnimaciones() {
+  if (animacionesIniciadas) {
+    return;
+  }
 
-const elementosRevelar =
-  docu*ent.querySelectorAll(
-    ".revela*"
-  );
+  animacionesIniciadas = true;
 
-const observador =
-  new I*tersectionObserver(
-
-    function *entradas) {
-
-      entradas.forEac*(
-        function (entrada) {
-
-  *       if (
-            entrada.is*ntersecting
-          ) {
-
-       *    entrada.target.classList.add(
-*             "visible"
-           *);
-
-          }
-
-        }
-      )*
-
-    },
-
-    {
-      threshold: 0*15
-    }
-
-  );
-
-elementosRevelar.f*rEach(
-  function (elemento) {
-
-  * observador.observe(
-      element*
+  const elementos =
+    document.querySelectorAll(
+      ".oculto, .revelar"
     );
 
+  if (!("IntersectionObserver" in window)) {
+    elementos.forEach(function (elemento) {
+      elemento.classList.add("visible");
+    });
+
+    return;
   }
-); 
+
+  const observador =
+    new IntersectionObserver(
+      function (entradas) {
+        entradas.forEach(function (entrada) {
+          if (entrada.isIntersecting) {
+            entrada.target.classList.add(
+              "visible"
+            );
+          }
+        });
+      },
+      {
+        threshold: 0.1
+      }
+    );
+
+  elementos.forEach(function (elemento) {
+    observador.observe(elemento);
+  });
+}
+
+/* MUSICA */
+
+function intentarReproducirMusica() {
+  const musica =
+    document.getElementById("musica");
+
+  const botonMusica =
+    document.getElementById("botonMusica");
+
+  if (!musica) {
+    return;
+  }
+
+  if (!musica.getAttribute("src")) {
+    musica.setAttribute(
+      "src",
+      "vivir-mi-vida.mp3"
+    );
+  }
+
+  musica
+    .play()
+    .then(function () {
+      if (botonMusica) {
+        botonMusica.hidden = false;
+        botonMusica.classList.add(
+          "reproduciendo"
+        );
+      }
+    })
+    .catch(function () {
+      if (botonMusica) {
+        botonMusica.hidden = false;
+        botonMusica.classList.remove(
+          "reproduciendo"
+        );
+      }
+    });
+}
+
+const botonMusica =
+  document.getElementById("botonMusica");
+
+if (botonMusica) {
+  botonMusica.addEventListener(
+    "click",
+    function () {
+      const musica =
+        document.getElementById("musica");
+
+      if (!musica) {
+        return;
+      }
+
+      if (musica.paused) {
+        musica
+          .play()
+          .then(function () {
+            botonMusica.classList.add(
+              "reproduciendo"
+            );
+          })
+          .catch(function () {
+            botonMusica.classList.remove(
+              "reproduciendo"
+            );
+          });
+      } else {
+        musica.pause();
+
+        botonMusica.classList.remove(
+          "reproduciendo"
+        );
+      }
+    }
+  );
+}
+
+/* HACER DISPONIBLE LA FUNCION PARA EL BOTON HTML */
+
+window.abrirInvitacion = abrirInvitacion;
