@@ -1,212 +1,81 @@
 <!DOCTYPE html>
 <html lang="es">
-
 <head>
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <meta name="theme-color" content="#1f3c24">
-
-  <title>
-    50 años | Edwin Fernando Alfonso Hernández
-  </title>
-
-  <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#1f3c24">
+<title>50 años | Edwin Fernando Alfonso Hernández</title>
+<style>
+:root{--verde:#1f3c24;--verde2:#355d3f;--crema:#f7f3ea;--dorado:#b88b30;--dorado2:#dcb45d;--blanco:#fff}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{width:100%;height:100%;overflow:hidden}
+body{font-family:Georgia,"Times New Roman",serif;background:var(--verde)}
+[hidden]{display:none!important}
+#inicio{position:fixed;inset:0;z-index:100;display:grid;place-items:center;padding:22px;color:#fff;background:radial-gradient(circle at 50% 22%,rgba(220,180,93,.22),transparent 38%),linear-gradient(145deg,var(--verde),var(--verde2))}
+.tarjeta{width:min(620px,100%);padding:46px 25px;text-align:center;border:1px solid rgba(220,180,93,.7);border-radius:28px;background:rgba(18,48,27,.76);box-shadow:0 20px 55px rgba(0,0,0,.28)}
+.etiqueta{margin-bottom:15px;font-size:.83rem;font-weight:700;letter-spacing:.23em}
+#nombreInvitado{margin-bottom:18px;color:var(--dorado2);font-size:clamp(2rem,7vw,3.5rem);line-height:1.12}
+#pasesInvitado{max-width:520px;margin:0 auto 27px;font-size:clamp(1rem,4vw,1.3rem);line-height:1.55}
+.boton{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 20px;color:#fff;background:var(--dorado);border:1px solid var(--dorado);border-radius:999px;box-shadow:0 8px 22px rgba(105,75,15,.2);cursor:pointer;font:700 .82rem Georgia,serif;letter-spacing:.035em;text-decoration:none}
+.boton:active{transform:scale(.97)}
+.secundario{color:var(--verde);background:var(--crema);border-color:rgba(31,60,36,.45);box-shadow:none}
+#invitacion{position:fixed;inset:0;width:100%;height:100dvh;background:var(--crema);overflow:hidden}
+#carril{display:flex;width:100%;height:100%;transition:transform .72s cubic-bezier(.22,1,.36,1);will-change:transform}
+.slide{flex:0 0 100%;width:100%;height:100%;display:grid;grid-template-rows:minmax(0,1fr) auto;background:var(--crema);opacity:.5;transform:scale(.97);transition:opacity .5s ease,transform .72s cubic-bezier(.22,1,.36,1)}
+.slide.activa{opacity:1;transform:scale(1)}
+.contenido{position:relative;min-height:0;display:flex;align-items:center;justify-content:center;overflow:hidden;background:var(--crema)}
+.imagen{display:block;width:100%;height:100%;object-fit:contain;object-position:center;background:var(--crema)}
+nav{display:flex;justify-content:space-between;gap:10px;padding:11px 13px max(13px,env(safe-area-inset-bottom));background:rgba(247,243,234,.98);border-top:1px solid rgba(184,139,48,.25)}
+.acciones{position:absolute;left:0;right:0;bottom:12px;z-index:5;display:flex;justify-content:center;flex-wrap:wrap;gap:10px;padding:10px;pointer-events:auto}
+.contador{color:#fff;background:linear-gradient(145deg,var(--verde),var(--verde2))}
+.cuenta{display:grid;align-content:center;justify-items:center;min-height:0;padding:65px 20px 26px;text-align:center}
+.cuenta h2{margin:17px 0 29px;color:var(--dorado2);font-size:clamp(2rem,7vw,3.5rem)}
+.tiempo{display:grid;grid-template-columns:repeat(4,minmax(100px,1fr));gap:13px;width:min(760px,100%)}
+.unidad{padding:21px 9px;border:1px solid rgba(220,180,93,.55);border-radius:17px;background:rgba(255,255,255,.08)}
+.unidad strong,.unidad span{display:block}.unidad strong{color:var(--dorado2);font-size:clamp(2rem,6vw,3.4rem)}.unidad span{margin-top:7px;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase}.fecha{margin-top:27px}.contador .secundario{color:#fff;background:transparent;border-color:rgba(255,255,255,.6)}
+.superior{position:fixed;z-index:20;top:max(12px,env(safe-area-inset-top));right:12px;left:12px;display:flex;justify-content:space-between;pointer-events:none}.superior>*{pointer-events:auto;min-width:44px;min-height:44px;color:#fff;background:rgba(31,60,36,.9);border:1px solid rgba(255,255,255,.58);border-radius:999px;box-shadow:0 8px 24px rgba(0,0,0,.2)}#musicaBtn{cursor:pointer;font-size:1.2rem}.progreso{display:grid;place-items:center;padding:0 14px;font-size:.84rem;font-weight:700}
+@media(max-width:680px){.tiempo{grid-template-columns:repeat(2,minmax(108px,1fr))}.boton{padding:10px 13px;font-size:.7rem}.acciones{bottom:8px}.imagen{object-fit:contain}}
+@media(prefers-reduced-motion:reduce){#carril,.slide{transition:none}}
+</style>
 </head>
-
 <body>
-
-  <!-- PANTALLA INICIAL -->
-
-  <div
-    id="pantallaInicial"
-    class="inicio"
-  >
-
-    <h2>
-      INVITADO ESPECIAL
-    </h2>
-
-    <h1 id="nombreInvitado">
-      Invitado Especial
-    </h1>
-
-    <p id="pasesInvitado">
-      Hemos reservado lugares para compartir esta celebración.
-    </p>
-
-    <button
-      class="boton"
-      type="button"
-      onclick="abrirInvitacion()"
-    >
-      ABRIR INVITACIÓN
-    </button>
-
-  </div>
-
-
-  <!-- CONTENIDO DE LA INVITACIÓN -->
-
-  <main
-    id="contenido"
-    style="display:none;"
-  >
-
-    <!-- PORTADA -->
-
-    <section class="oculto">
-
-      <img
-        src="PORTADA.png"
-        alt="Portada de la invitación"
-      >
-
-    </section>
-
-
-    <!-- NOMBRE DEL INVITADO Y PASES -->
-
-    <section class="personalizado oculto">
-
-      <h2>
-        INVITADO ESPECIAL
-      </h2>
-
-      <h1 id="nombreInterno">
-        Invitado
-      </h1>
-
-      <p id="pasesInternos">
-        Pases reservados
-      </p>
-
-    </section>
-
-
-    <!-- BIENVENIDA -->
-
-    <section class="oculto">
-
-      <img
-        src="BIENVENIDA.png"
-        alt="Mensaje de bienvenida"
-      >
-
-    </section>
-
-
-    <!-- CUENTA REGRESIVA -->
-
-    <section class="contador oculto">
-
-      <h2>
-        CUENTA REGRESIVA
-      </h2>
-
-      <div id="countdown"></div>
-
-    </section>
-
-
-    <!-- UBICACIÓN -->
-
-    <section class="oculto">
-
-      UBICACION.png
-
-    </section>
-
-
-    <!-- BOTONES DE UBICACIÓN Y CALENDARIO -->
-
-    <section class="botones oculto">
-
-      <a
-        class="boton"
-        href="https://maps.app.goo.gl/HE2tgvHuHPJm6so68"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        VER UBICACIÓN
-      </a>
-
-      <a
-        class="boton"
-        href="https://www.google.com/calendar/render?action=TEMPLATE&amp;text=Celebracion%2050%20anos%20Edwin%20Fernando%20Alfonso%20Hernandez&amp;dates=20261011T170000Z%2F20261011T220000Z&amp;details=Celebracion%20de%20los%2050%20anos%20de%20Edwin%20Fernando%20Alfonso%20Hernandez&amp;location=Hacienda%DARIO
-      </a>
-
-    </section>
-
-
-    <!-- ALMUERZO -->
-
-    <section class="oculto">
-
-      <img
-        src="ALMUERZO.png"
-        alt="RMACIÓN -->
-
-    <section class="oculto">
-
-      CONFIRMACION.png
-
-    </section>
-
-
-    <!-- BOTÓN DE CONFIRMACIÓN -->
-
-    <section class="botones oculto">
-
-      <a
-        class="boton"
-        href="https://forms.gle/Qco4yvgkDKeDfZdv5"
-        target="_blank"
-        rel="noopener noreferrer"
-      >
-        CONFIRMAR ASISTENCIA
-      </a>
-
-    </section>
-
-
-    <!-- MENSAJE FINAL -->
-
-    <section class="oculto">
-
-      <img
-        src="FINAL.png"
-        alt="Mensaje final de la invitación"
-      >
-
-    </section>
-
-
-    <!-- PIE DE PÁGINA -->
-
-    <footer class="oculto">
-
-      <p>
-        50 años vividos, infinitos momentos por celebrar
-      </p>
-
-      <p>
-        Edwin Fernando Alfonso Hernández
-      </p>
-
-    </footer>
-
-  </main>
-
-
-  <!-- JAVASCRIPT -->
-
-  <script src="script.js"></script>
-
+<section id="inicio"><div class="tarjeta"><p class="etiqueta">INVITADO ESPECIAL</p><h1 id="nombreInvitado">Invitado especial</h1><p id="pasesInvitado"></p><button id="abrir" class="boton" type="button">ABRIR INVITACIÓN</button></div></section>
+<main id="invitacion" hidden><div id="carril"></div><div class="superior"><button id="musicaBtn" type="button" aria-label="Música">♫</button><div id="progreso" class="progreso">1 / 7</div></div><audio id="musica" loop preload="metadata"></audio></main>
+<script>
+"use strict";
+const q=new URLSearchParams(location.search);
+const nombre=(q.get("nombre")||"Invitado especial").trim();
+const pases=Math.max(1,parseInt(q.get("pases"),10)||1);
+const MAPS="https://maps.app.goo.gl/HE2tgvHuHPJm6so68";
+const FORM="https://forms.gle/Qco4yvgkDKeDfZdv5";
+const CAL="https://www.google.com/calendar/render?action=TEMPLATE&text=Celebracion%2050%20anos%20Edwin%20Fernando%20Alfonso%20Hernandez&dates=20261011T170000Z%2F20261011T220000Z&details=Celebracion%20de%20los%2050%20anos%20de%20Edwin%20Fernando%20Alfonso%20Hernandez&location=Hacienda%20San%20Felipe";
+const datos=[
+ {archivo:"PORTADA.png",alt:"Portada"},
+ {archivo:"BIENVENIDA.png",alt:"Bienvenida"},
+ {contador:true},
+ {archivo:"UBICACION.png",alt:"Ubicación",acciones:[{texto:"VER UBICACIÓN",url:MAPS},{texto:"AGREGAR AL CALENDARIO",url:CAL,secundario:true}]},
+ {archivo:"ALMUERZO.png",alt:"Almuerzo"},
+ {archivo:"CONFIRMACION.png",alt:"Confirmación",acciones:[{texto:"CONFIRMAR ASISTENCIA",url:FORM}]},
+ {archivo:"FINAL.png",alt:"Mensaje final"}
+];
+const inicio=document.getElementById("inicio"),invitacion=document.getElementById("invitacion"),carril=document.getElementById("carril"),progreso=document.getElementById("progreso"),musica=document.getElementById("musica"),musicaBtn=document.getElementById("musicaBtn");
+document.getElementById("nombreInvitado").textContent=nombre;
+document.getElementById("pasesInvitado").textContent=pases===1?"Hemos reservado 1 lugar para compartir esta celebración.":`Hemos reservado ${pases} lugares para compartir esta celebración.`;
+function crearBoton(texto,clase=""){const b=document.createElement("button");b.type="button";b.className=`boton ${clase}`.trim();b.textContent=texto;return b}
+function abrirEnlace(url){window.location.assign(url)}
+function crearNav(i){const n=document.createElement("nav");if(i>0){const a=crearBoton("‹ ANTERIOR","secundario");a.addEventListener("click",()=>mostrar(i-1));n.appendChild(a)}else n.appendChild(document.createElement("span"));if(i<datos.length-1){const s=crearBoton("SIGUIENTE ›");s.addEventListener("click",()=>mostrar(i+1));n.appendChild(s)}else n.appendChild(document.createElement("span"));return n}
+function crearAcciones(lista){const d=document.createElement("div");d.className="acciones";lista.forEach(x=>{const b=crearBoton(x.texto,x.secundario?"secundario":"");b.addEventListener("click",e=>{e.preventDefault();e.stopPropagation();abrirEnlace(x.url)});d.appendChild(b)});return d}
+function crearImagen(x,i){const s=document.createElement("section");s.className=`slide${i===0?" activa":""}`;const c=document.createElement("div");c.className="contenido";const img=new Image();img.src=x.archivo;img.alt=x.alt;img.className="imagen";c.appendChild(img);if(x.acciones)c.appendChild(crearAcciones(x.acciones));s.append(c,crearNav(i));return s}
+function unidad(id,t){const d=document.createElement("div");d.className="unidad";const b=document.createElement("strong");b.id=id;b.textContent="0";const sp=document.createElement("span");sp.textContent=t;d.append(b,sp);return d}
+function crearContador(i){const s=document.createElement("section");s.className="slide contador";const c=document.createElement("div");c.className="cuenta";const e=document.createElement("p");e.className="etiqueta";e.textContent="FALTAN";const h=document.createElement("h2");h.textContent="Cuenta regresiva";const t=document.createElement("div");t.className="tiempo";t.append(unidad("dias","Días"),unidad("horas","Horas"),unidad("minutos","Minutos"),unidad("segundos","Segundos"));const f=document.createElement("p");f.className="fecha";f.textContent="11 de octubre de 2026 · 12:00 m.";c.append(e,h,t,f);s.append(c,crearNav(i));return s}
+datos.forEach((x,i)=>carril.appendChild(x.contador?crearContador(i):crearImagen(x,i)));
+const slides=[...document.querySelectorAll(".slide")];let actual=0;
+function mostrar(n){if(n<0||n>=slides.length||n===actual)return;actual=n;carril.style.transform=`translateX(-${actual*100}%)`;slides.forEach((s,i)=>s.classList.toggle("activa",i===actual));progreso.textContent=`${actual+1} / ${slides.length}`}
+document.getElementById("abrir").addEventListener("click",()=>{inicio.hidden=true;invitacion.hidden=false;musica.src="vivir-mi-vida.mp3";musica.play().catch(()=>{})});
+musicaBtn.addEventListener("click",()=>{if(musica.paused){musica.play().catch(()=>{})}else{musica.pause()}});
+let toqueX=null;document.addEventListener("touchstart",e=>{if(e.target.closest("button"))return;toqueX=e.changedTouches[0].clientX},{passive:true});document.addEventListener("touchend",e=>{if(toqueX===null||invitacion.hidden)return;const d=e.changedTouches[0].clientX-toqueX;toqueX=null;if(Math.abs(d)>70)mostrar(actual+(d<0?1:-1))},{passive:true});
+document.addEventListener("keydown",e=>{if(invitacion.hidden)return;if(e.key==="ArrowRight")mostrar(actual+1);if(e.key==="ArrowLeft")mostrar(actual-1)});
+const fecha=new Date("2026-10-11T12:00:00-05:00").getTime();function reloj(){const d=Math.max(0,fecha-Date.now()),v=[Math.floor(d/86400000),Math.floor(d%86400000/3600000),Math.floor(d%3600000/60000),Math.floor(d%60000/1000)];["dias","horas","minutos","segundos"].forEach((id,i)=>document.getElementById(id).textContent=i?String(v[i]).padStart(2,"0"):v[i])}reloj();setInterval(reloj,1000);
+</script>
 </body>
-
 </html>
